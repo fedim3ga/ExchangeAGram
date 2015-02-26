@@ -15,6 +15,8 @@
 		145A5F071A9AEDD800DCA63F /* ExchangeAGramTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145A5F061A9AEDD800DCA63F /* ExchangeAGramTests.swift */; };
 		145A5F111A9AEF9400DCA63F /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145A5F101A9AEF9400DCA63F /* FeedViewController.swift */; };
 		145A5F131A9AF60600DCA63F /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 145A5F121A9AF60600DCA63F /* FeedCell.swift */; };
+		1477D0091A9CBD33007B7B3F /* FilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1477D0081A9CBD33007B7B3F /* FilterViewController.swift */; };
+		1477D00B1A9CC376007B7B3F /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1477D00A1A9CC376007B7B3F /* FilterCell.swift */; };
 		14A3F2AE1A9C87F600DEB8EA /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14A3F2AD1A9C87F600DEB8EA /* MobileCoreServices.framework */; };
 		14A3F2B01A9C8DBA00DEB8EA /* FeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14A3F2AF1A9C8DBA00DEB8EA /* FeedItem.swift */; };
 /* End PBXBuildFile section */
@@ -42,6 +44,8 @@
 		145A5F061A9AEDD800DCA63F /* ExchangeAGramTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeAGramTests.swift; sourceTree = "<group>"; };
 		145A5F101A9AEF9400DCA63F /* FeedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		145A5F121A9AF60600DCA63F /* FeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
+		1477D0081A9CBD33007B7B3F /* FilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterViewController.swift; sourceTree = "<group>"; };
+		1477D00A1A9CC376007B7B3F /* FilterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterCell.swift; sourceTree = "<group>"; };
 		14A3F2AD1A9C87F600DEB8EA /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		14A3F2AF1A9C8DBA00DEB8EA /* FeedItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -90,7 +94,9 @@
 				145A5EEF1A9AEDD800DCA63F /* ExchangeAGram.xcdatamodeld */,
 				14A3F2AF1A9C8DBA00DEB8EA /* FeedItem.swift */,
 				145A5F121A9AF60600DCA63F /* FeedCell.swift */,
+				1477D00A1A9CC376007B7B3F /* FilterCell.swift */,
 				145A5F101A9AEF9400DCA63F /* FeedViewController.swift */,
+				1477D0081A9CBD33007B7B3F /* FilterViewController.swift */,
 				145A5EF71A9AEDD800DCA63F /* Images.xcassets */,
 				145A5EF91A9AEDD800DCA63F /* LaunchScreen.xib */,
 				145A5EF41A9AEDD800DCA63F /* Main.storyboard */,
@@ -225,6 +231,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1477D00B1A9CC376007B7B3F /* FilterCell.swift in Sources */,
+				1477D0091A9CBD33007B7B3F /* FilterViewController.swift in Sources */,
 				145A5EEE1A9AEDD800DCA63F /* AppDelegate.swift in Sources */,
 				145A5F131A9AF60600DCA63F /* FeedCell.swift in Sources */,
 				145A5F111A9AEF9400DCA63F /* FeedViewController.swift in Sources */,
