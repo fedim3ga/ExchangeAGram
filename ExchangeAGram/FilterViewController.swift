@@ -16,6 +16,9 @@ class FilterViewController: UIViewController, UICollectionViewDataSource, UIColl
     var filters:[CIFilter] = []
     let kIntensity = 0.7
     
+    let placeholderImage = UIImage(named: "PlaceHolderImage")
+    
+    let tmp = NSTemporaryDirectory()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,7 +81,6 @@ class FilterViewController: UIViewController, UICollectionViewDataSource, UIColl
         let extent = filteredImage.extent()
         let cgImage:CGImageRef = context.createCGImage(filteredImage, fromRect: extent)
         let finalImage = UIImage(CGImage: cgImage)
-        
         return finalImage!
         
     }
@@ -92,10 +94,40 @@ class FilterViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell:FilterCell = collectionView.dequeueReusableCellWithReuseIdentifier("MyCell", forIndexPath: indexPath) as FilterCell
-        cell.imageView.image = filteredImageFromImage(thisFeedItem.image, filter: filters[indexPath.row])
+        
+        if cell.imageView.image == nil {
+            
+            cell.imageView.image = placeholderImage
+            
+            let filterQueue:dispatch_queue_t = dispatch_queue_create("filter queue", nil)
+            dispatch_async(filterQueue, { () -> Void in
+                let filterImage = self.filteredImageFromImage(self.thisFeedItem.thumbnail, filter: self.filters[indexPath.row])
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    cell.imageView.image = filterImage
+                })
+            })
+            
+        }
         
         return cell
     }
-
-
+    
+    
+    // Caching functions
+    
+    func cacheImage(imageNumber:Int) {
+        
+        let filename = "\(imageNumber)"
+        let uniquePath = tmp.stringByAppendingPathComponent(filename)
+        if !NSFileManager.defaultManager().fileExistsAtPath(filename) {
+            let data = self.thisFeedItem.thumbnail
+            let filter = self.filters[imageNumber]
+            let image = filteredImageFromImage(data, filter: filter)
+            UIImageJPEGRepresentation(image, 1.0).writeToFile(uniquePath, atomically: true)
+        }
+    }
+  
+    
+    
+    
 }
