@@ -33,6 +33,13 @@ class FeedViewController: UIViewController, UICollectionViewDataSource, UICollec
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewDidAppear(animated: Bool) {
+        let request = NSFetchRequest(entityName: "FeedItem")
+        let context:NSManagedObjectContext = appDelegate.managedObjectContext!
+        feedArray = context.executeFetchRequest(request, error: nil)!
+        collectionView.reloadData()
+    }
+    
 
     /*
     // MARK: - Navigation
