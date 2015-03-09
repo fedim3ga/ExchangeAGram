@@ -51,6 +51,12 @@ class FeedViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     */
     
+
+    
+    @IBAction func profileBarButtonTapped(sender: AnyObject) {
+        performSegueWithIdentifier("profileSegue", sender: nil)
+        
+    }
     
     @IBAction func snapBarButtonItemTapped(sender: UIBarButtonItem) {
         if UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera) {
@@ -93,7 +99,7 @@ class FeedViewController: UIViewController, UICollectionViewDataSource, UICollec
         let feedItem = FeedItem(entity: entityDescription!, insertIntoManagedObjectContext: managedObjectContext!)
         
         feedItem.image = imageData
-        feedItem.caption = "Test Caption"
+        feedItem.caption = ""
         feedItem.thumbnail = thumbnailData
         
         appDelegate.saveContext()
