@@ -54,6 +54,9 @@ class ProfileViewController: UIViewController, FBLoginViewDelegate {
         println("Error: \(error.localizedDescription)")
     }
     
+    @IBAction func mapViewButtonTapped(sender: UIButton) {
+        performSegueWithIdentifier("mapSegue", sender: nil)
+    }
     
 
 }

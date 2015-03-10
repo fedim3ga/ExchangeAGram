@@ -9,13 +9,17 @@
 import UIKit
 import MobileCoreServices
 import CoreData
+import MapKit
 
 //So when we add DataSource and Delegate in here, we need to hook up our collectionView to our FeedViewController in Main.Storyboard
-class FeedViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class FeedViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, CLLocationManagerDelegate {
 
     @IBOutlet weak var collectionView: UICollectionView!
+    
     var appDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
     var feedArray:[AnyObject] = []
+    
+    var locationManager:CLLocationManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,8 +28,22 @@ class FeedViewController: UIViewController, UICollectionViewDataSource, UICollec
         let context:NSManagedObjectContext = appDelegate.managedObjectContext!
         
         feedArray = context.executeFetchRequest(request, error: nil)!
+        
+        locationManager = CLLocationManager()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        locationManager.requestAlwaysAuthorization()
+        
+        locationManager.distanceFilter = 100.0
+        locationManager.startUpdatingLocation()
 
         // Do any additional setup after loading the view.
+    }
+    
+    // MARK: - MAP
+    
+    func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+        println("Locations = \(locations)")
     }
 
     override func didReceiveMemoryWarning() {
@@ -41,15 +59,7 @@ class FeedViewController: UIViewController, UICollectionViewDataSource, UICollec
     }
     
 
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
     
 
     
@@ -101,6 +111,8 @@ class FeedViewController: UIViewController, UICollectionViewDataSource, UICollec
         feedItem.image = imageData
         feedItem.caption = ""
         feedItem.thumbnail = thumbnailData
+        feedItem.latitude = locationManager.location.coordinate.latitude
+        feedItem.longitude = locationManager.location.coordinate.longitude
         
         appDelegate.saveContext()
         feedArray.append(feedItem)
