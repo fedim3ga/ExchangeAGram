@@ -18,7 +18,7 @@ class FilterViewController: UIViewController, UICollectionViewDataSource, UIColl
     var filters:[CIFilter] = []
     let kIntensity = 0.7
     
-    let placeholderImage = UIImage(named: "PlaceHolderImage")
+    let placeholderImage = UIImage(named: "Placeholder")
     
     let tmp = NSTemporaryDirectory()
     
@@ -202,7 +202,7 @@ class FilterViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     func cacheImage(imageNumber:Int) {
         
-        let filename = "\(imageNumber)"
+        let filename = "\(thisFeedItem.uniqueID)\(imageNumber)"
         let uniquePath = tmp.stringByAppendingPathComponent(filename)
 
         if !NSFileManager.defaultManager().fileExistsAtPath(uniquePath) {
@@ -216,7 +216,7 @@ class FilterViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     func getCachedImage(imageNumber:Int) -> UIImage {
         
-        let filename = "\(imageNumber)"
+        let filename = "\(thisFeedItem.uniqueID)\(imageNumber)"
         let uniquePath = tmp.stringByAppendingPathComponent(filename)
         var image: UIImage
         
