@@ -40,6 +40,7 @@ class MapViewController: UIViewController {
                 annotation.setCoordinate(location)
                 annotation.title = item.caption
                 mapView.addAnnotation(annotation)
+                // Hello Jodie
             }
         }
         
